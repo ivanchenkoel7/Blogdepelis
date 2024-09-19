@@ -1,22 +1,25 @@
 import React, { useState } from 'react';
 
-export const Buscador = ({ listadoState, setListadoState }) => {
+export const Buscador = ({ listadoState, setListadoState, setIsBuscadorActive }) => {
     
     const [busqueda, setBusqueda] = useState('');
     const [noEncontrado, setnoEncontrado] = useState(false);
     
     const buscarPelicula = (e) => {
-        setBusqueda(e.target.value);
+        const term = e.target.value;
+        setBusqueda(term);
 
         let peliculas_encontradas = listadoState.filter(pelicula => {
-            return pelicula.titulo.toLowerCase().includes(busqueda.toLowerCase());
+            return pelicula.titulo.toLowerCase().includes(term.toLowerCase());
         });
 
-        if (busqueda.length <= 1 || peliculas_encontradas.length === 0) {
+        if (term.length <= 1 || peliculas_encontradas.length === 0) {
             peliculas_encontradas = JSON.parse(localStorage.getItem('peliculas'));
             setnoEncontrado(true);
+            setIsBuscadorActive(false); // Desactivar el estado del buscador si no hay resultados
         } else {
             setnoEncontrado(false);
+            setIsBuscadorActive(true); // Activar el estado del buscador si hay resultados
         }
 
         setListadoState(peliculas_encontradas);
@@ -24,22 +27,18 @@ export const Buscador = ({ listadoState, setListadoState }) => {
     
     return (
         <div className="search">
-            <h3 className="title__aside">Buscador de Peliculas</h3>
             {(noEncontrado && busqueda.length > 2) && (
                 <span className='no_encontrado'>No se encontraron coincidencias</span>
             )}
-
-            <form action="" className="form__aside">
+            <form action="" className="form__aside-search">
                 <input
                     type="text"
                     name="busqueda"
                     id="search"
-                    placeholder="Buscar..."
-                    autoComplete='off'
+                    placeholder="Buscador..."
                     value={busqueda}
                     onChange={buscarPelicula}
                 />
-                <input type="submit" value="Buscar" />
             </form>
         </div>
     );

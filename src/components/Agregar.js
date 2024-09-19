@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { saveStorage } from '../helpers/saveStorage';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
 const Agregar = ({ setListadoState }) => {
     const titulocom = "Agregar Peliculas";
     const [peliculaState, setPeliculaState] = useState({
-        id: '',
         titulo: '',
         descripcion: '',
-        image: null,
-        episodio: ''
+        episodio: '',
+        image: null
     });
     const { titulo, descripcion, episodio, image } = peliculaState;
 
@@ -31,58 +31,45 @@ const Agregar = ({ setListadoState }) => {
         });
     };
 
-    const convertToBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = (error) => reject(error);
-        });
-    };
-
     const movieDateForm = async (e) => {
         e.preventDefault();
-        let target = e.target;
-        let titulo = target.titulo.value;
-        let descripcion = target.descripcion.value;
-        let image = peliculaState.image;
-        let episodio = target.episodio.value;
-
-        if (!titulo || !descripcion || !image || !episodio) {
-            alert('Por favor, completa todos los campos.');
+        if (!titulo || !descripcion || !episodio || !image) {
+            toast.error('Por favor, completa todos los campos.');
             return;
         }
 
-        let imageBase64 = await convertToBase64(image);
-        let pelicula = {
-            id: new Date().getTime(),
-            titulo: titulo,
-            descripcion: descripcion,
-            image: imageBase64,
-            episodio: episodio
-        };
+        const formData = new FormData();
+        formData.append('titulo', titulo);
+        formData.append('descripcion', descripcion);
+        formData.append('episodio', episodio);
+        formData.append('image', image);
 
-        setListadoState(elementos => {
-            return [...elementos, pelicula];
+        axios.post('http://192.168.1.24:8000/api/peliculas/', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(response => {
+            setListadoState(prevState => [...prevState, response.data]);
+            toast.success('Pelicula Agregada exitosamente');
+        })
+        .catch(error => {
+            console.error('Hubo un error al agregar la película:', error);
+            toast.error('Hubo un error al agregar la película. Por favor, intenta nuevamente.');
         });
-
-        saveStorage('peliculas', pelicula);
-        alert('Pelicula Agregada exitosamente');
 
         // Limpiar el formulario
         setPeliculaState({
-            id: '',
             titulo: '',
             descripcion: '',
-            image: null,
-            episodio: ''
+            episodio: '',
+            image: null
         });
     };
 
     return (
         <div className="agregar">
             <h3 className="title__aside">{titulocom}</h3>
-            {(titulo && descripcion && episodio) && <div className="alert alert-success">Pelicula Agregada</div>}
             <form onSubmit={movieDateForm} className="form__aside">
                 <input
                     type="text"

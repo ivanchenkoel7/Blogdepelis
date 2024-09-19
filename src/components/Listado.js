@@ -1,19 +1,20 @@
-import React, { useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Editar } from './Editar';
+import { toast } from 'react-toastify';
 
-export const Listado = ({listadoState,setListadoState}) => {
-    //const [listadoState, setListadoState] = useState([]);
-
+export const Listado = ({ listadoState, setListadoState }) => {
     const [editar, setEditar] = useState(0);
 
-
-
-
     const conseguirPeliculas = () => {
-        let peliculas = JSON.parse(localStorage.getItem('peliculas')) || [];
-        setListadoState(peliculas);
-
-        return peliculas;
+        axios.get('http://192.168.1.24:8000/api/peliculas/')
+            .then(response => {
+                setListadoState(response.data);
+            })
+            .catch(error => {
+                console.error('Hubo un error al obtener las películas:', error);
+                toast.error('Hubo un error al obtener las películas.');
+            });
     };
 
     useEffect(() => {
@@ -21,21 +22,21 @@ export const Listado = ({listadoState,setListadoState}) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setListadoState]);
 
-
     const borrarPelicula = (id) => {
-        let peliculas_almacenadas = conseguirPeliculas();
-
-        let nuevo_listado = peliculas_almacenadas.filter(pelicula => pelicula.id !== parseInt (id));
-
-        setListadoState(nuevo_listado);
-
-        localStorage.setItem('peliculas', JSON.stringify(nuevo_listado));
-
-    }
+        axios.delete(`http://192.168.1.24:8000/api/peliculas/${id}/`)
+            .then(() => {
+                setListadoState(prevState => prevState.filter(pelicula => pelicula.id !== id));
+                toast.success('Pelicula eliminada exitosamente');
+            })
+            .catch(error => {
+                console.error('Hubo un error al eliminar la película:', error);
+                toast.error('Hubo un error al eliminar la película. Por favor, intenta nuevamente.');
+            });
+    };
 
     return (
         <>
-            {listadoState.length > 0 ? 
+            {listadoState && listadoState.length > 0 ? 
                 listadoState.map(pelicula => {
                     return (
                         <article key={pelicula.id} className="movie__item">
@@ -56,27 +57,22 @@ export const Listado = ({listadoState,setListadoState}) => {
                                 <h2 className="title__movie">{pelicula.titulo}</h2>
                                 <p className="description__movie">{pelicula.descripcion}</p>
                                 <div className="item__button">
-                                    <button className="edit" onClick={ () => {setEditar(pelicula.id)}}>Editar</button>
-                                    <button className="delete" onClick={ () => borrarPelicula(pelicula.id)}>Eliminar</button>
+                                    <button className="edit" onClick={() => { setEditar(pelicula.id) }}>Editar</button>
+                                    <button className="delete" onClick={() => borrarPelicula(pelicula.id)}>Eliminar</button>
                                 </div>
                                 <div className="edit__form">
-                                    {/*formulario editar*/}
                                     {editar === pelicula.id && (
                                         <Editar pelicula={pelicula}
-                                                conseguirPeliculas={conseguirPeliculas}
-                                                setEditar={setEditar}
-                                                setListadoState={setListadoState}/>
+                                            conseguirPeliculas={conseguirPeliculas}
+                                            setEditar={setEditar}
+                                            setListadoState={setListadoState} />
                                     )}
                                 </div>
-
-
-                                
-
                             </div>
                         </article>
                     );
                 })
-            : <h2 className='title__movie'>No hay peliculas cargadas para mostrar</h2>}
+                : <h2 className='title__movie'>No hay peliculas cargadas para mostrar</h2>}
         </>
     );
 };

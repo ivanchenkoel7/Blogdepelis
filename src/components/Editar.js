@@ -1,79 +1,94 @@
 import React, { useState } from 'react';
+import axios from 'axios';
+import { toast } from 'react-toastify';
 
-export const Editar = ({ pelicula, conseguirPeliculas, setEditar, setListadoState }) => {
+export const Editar = ({ pelicula, conseguirPeliculas, setEditar }) => {
     const titulocomped = "Editar Peliculas";
-    const [imageState, setImageState] = useState(null);
+    const [peliculaState, setPeliculaState] = useState({
+        titulo: pelicula.titulo,
+        descripcion: pelicula.descripcion,
+        episodio: pelicula.episodio,
+        image: null
+    });
+    const { titulo, descripcion, episodio, image } = peliculaState;
 
     const handleFileClick = () => {
         document.getElementById('image').click();
     };
 
     const handleFileChange = (e) => {
-        setImageState(e.target.files[0]);
+        setPeliculaState({
+            ...peliculaState,
+            image: e.target.files[0]
+        });
     };
 
-    const convertToBase64 = (file) => {
-        return new Promise((resolve, reject) => {
-            const reader = new FileReader();
-            reader.readAsDataURL(file);
-            reader.onload = () => resolve(reader.result);
-            reader.onerror = (error) => reject(error);
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        if (name === 'episodio' && value.length > 20) {
+            toast.error('El campo Episodio no puede tener más de 20 caracteres.');
+            return;
+        }
+        setPeliculaState({
+            ...peliculaState,
+            [name]: value
         });
     };
 
     const guardarEdicion = async (e, id) => {
         e.preventDefault();
 
-        let target = e.target;
-
-        const peliculas_almacenadas = conseguirPeliculas();
-        const indice = peliculas_almacenadas.findIndex(pelicula => pelicula.id === id);
-
-        let imageBase64 = pelicula.image;
-        if (imageState) {
-            imageBase64 = await convertToBase64(imageState);
+        const formData = new FormData();
+        formData.append('titulo', titulo);
+        formData.append('descripcion', descripcion);
+        formData.append('episodio', episodio);
+        if (image) {
+            formData.append('image', image);
         }
 
-        let pelicula_actualizada = {
-            id: id,
-            titulo: target.titulo.value,
-            descripcion: target.descripcion.value,
-            episodio: target.episodio.value,
-            image: imageBase64
-        };
-
-        peliculas_almacenadas[indice] = pelicula_actualizada;
-
-        localStorage.setItem('peliculas', JSON.stringify(peliculas_almacenadas));
-
-        setListadoState(peliculas_almacenadas);
-        setEditar(0);
-    }
+        axios.put(`http://192.168.1.24:8000/api/peliculas/${id}/`, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+        .then(response => {
+            conseguirPeliculas();
+            setEditar(0);
+            toast.success('Pelicula actualizada exitosamente');
+        })
+        .catch(error => {
+            console.error('Hubo un error al actualizar la película:', error);
+            toast.error('Hubo un error al actualizar la película. Por favor, intenta nuevamente.');
+        });
+    };
 
     return (
         <div className='edit_form'>
             <h3 className="title__aside">{titulocomped}</h3> 
 
-            <form onSubmit={ e => guardarEdicion(e, pelicula.id)} className="form__aside">
+            <form onSubmit={e => guardarEdicion(e, pelicula.id)} className="form__aside">
                 <input 
                     type="text"
                     name="titulo"
-                    defaultValue={pelicula.titulo}
+                    value={titulo}
                     id="titulo"
                     placeholder="Editar Titulo..."
+                    onChange={handleInputChange}
                 />
                 <textarea 
                     name="descripcion"
                     id="descripcion"
-                    defaultValue={pelicula.descripcion}
+                    value={descripcion}
                     placeholder="Editar Descripción..."
+                    onChange={handleInputChange}
                 />
                 <input
                     type="text"
                     id="episodio"
                     name="episodio"
                     placeholder="Episodio"
-                    defaultValue={pelicula.episodio}
+                    value={episodio}
+                    onChange={handleInputChange}
                 />
                 <input 
                     type="file" 
@@ -84,9 +99,9 @@ export const Editar = ({ pelicula, conseguirPeliculas, setEditar, setListadoStat
                     onChange={handleFileChange} 
                 />
                 <button type="button" onClick={handleFileClick} className="custom-file-upload">Seleccionar Imagen</button>
-                {imageState && <img src={URL.createObjectURL(imageState)} alt="Vista previa" style={{ maxWidth: '200px', marginTop: '10px' }} />}
-                <button className="edit">Editar</button>
+                {image && <img src={URL.createObjectURL(image)} alt="Vista previa" style={{ maxWidth: '200px', marginTop: '10px' }} />}
+                <button type="submit" className="edit">Editar</button>
             </form>
         </div>
-    )
-}
+    );
+};

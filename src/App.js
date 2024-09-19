@@ -1,4 +1,3 @@
-// src/App.js
 import './App.css';
 import './responsive.css';
 
@@ -10,15 +9,43 @@ import { Buscador } from './components/Buscador';
 import Agregar from './components/Agregar';
 import { Listado } from './components/Listado';
 import ToggleSidebarButton from './components/ToggleSidebarButton';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Cards } from './components/Cards';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   const [listadoState, setListadoState] = useState([]);
   const [isSidebarActive, setIsSidebarActive] = useState(false);
+  const [isBuscadorActive, setIsBuscadorActive] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarActive(!isSidebarActive);
   };
+
+  useEffect(() => {
+    const fetchPeliculas = () => {
+      axios.get('http://192.168.1.24:8000/api/peliculas/')
+        .then(response => {
+          setListadoState(response.data);
+        })
+        .catch(error => {
+          console.error('Hubo un error al obtener las películas:', error);
+          toast.error('Hubo un error al obtener las películas.');
+        });
+    };
+
+    fetchPeliculas(); // Fetch initial data
+
+    const intervalId = setInterval(() => {
+      if (!isBuscadorActive) {
+        fetchPeliculas();
+      }
+    }, 5000); // Poll every 5 seconds
+
+    return () => clearInterval(intervalId); // Cleanup interval on component unmount
+  }, [isBuscadorActive]);
 
   return (
     <div className={`layout ${isSidebarActive ? 'sidebar-active' : ''}`}>
@@ -30,12 +57,17 @@ function App() {
         <ul className="nav__list">
           <li className="nav__item">
             <img className="nav__icon" src={lightsaber} alt="Icono Inicio" />
-            <a className="nav__link" href="#/">Inicio</a>
+            <a className="nav__link" href="#index">Inicio</a>
           </li>
           <li className="nav__item">
             <img className="nav__icon" src={lightsaber} alt="Icono Peliculas" />
-            <a className="nav__link" href="#/">Peliculas</a>
+            <a className="nav__link" href="#movies">Peliculas</a>
           </li>
+
+          <li className="nav__item">
+            <Buscador listadoState={listadoState} setListadoState={setListadoState} setIsBuscadorActive={setIsBuscadorActive} />  
+          </li>
+          
           <li className="nav__item">
             <img className="nav__icon" src={lightsaber} alt="Icono Blog" />
             <a className="nav__link" href="#/">Blog</a>
@@ -50,13 +82,13 @@ function App() {
 
       <NavWithSound />
 
-      <header className="header__react">
+      <header className="header__react" id='index'>
         <div className="pre___movie">
-          <h4 className="pre__header">Star Wars</h4>
+          <h4 className="pre__header">Starblog</h4>
           <img className="header__icon" src={lightsaber} alt="Icono Inicio" />
           <hr className="hr__header" id="linea" />
         </div>
-        <h1 className="header__title">Blog de Peliculas</h1>
+        <h1 className="header__title">Sitio de Peliculas</h1>
         <div className="bolaNavidad"></div>
         <div className="xwing">
           <img src={xwing} className="img__x" alt="xwing" />
@@ -66,15 +98,17 @@ function App() {
         <audio id="hover-sound2" src="/sounds/intro.mp3" preload="auto"></audio>
       </header>
 
-      <main className="main__react">
+      <Cards />
+
+      <main className="main__react" id='movies'>
         <section className="main__content">
+          <h2 className="title__section">Filmografia</h2> 
           <Listado listadoState={listadoState} setListadoState={setListadoState} />
         </section>
         <ToggleSidebarButton toggleSidebar={toggleSidebar} />
     
         <aside className={`main__sidebar ${isSidebarActive ? 'active' : ''}`}>
           <div className="forms__sec">
-            <Buscador listadoState={listadoState} setListadoState={setListadoState} />
             <Agregar setListadoState={setListadoState} />
           </div>
         </aside>
@@ -89,6 +123,19 @@ function App() {
           <i className="fa-brands fa-galactic-senate"></i>
         </div>
       </footer>
+
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="dark"
+      />
     </div>
   );
 }
