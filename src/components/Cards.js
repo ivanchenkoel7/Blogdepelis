@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import CardList from './CardList';
 import axios from 'axios';
 import { toast } from 'react-toastify';
@@ -7,13 +7,13 @@ export const Cards = () => {
     const initialFormData = {
         frase: '',
         icono: 'fa-solid fa-jedi',
-        nombre: '',
-        color: 'rojos'
+        personaje_id: ''
     };
 
     const [showForm, setShowForm] = useState(false);
     const [formData, setFormData] = useState(initialFormData);
     const [cards, setCards] = useState([]);
+    const [personajes, setPersonajes] = useState([]);
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
@@ -22,8 +22,14 @@ export const Cards = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        const dataToSend = {
+            frase: formData.frase,
+            icono: formData.icono,
+            personaje_id: Number(formData.personaje_id) // Asegúrate de que el ID sea un número
+        };
+        console.log('Datos enviados:', dataToSend); // Agregar esta línea para depuración
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/cards/', formData, {
+            const response = await axios.post('http://127.0.0.1:8000/api/cards/', dataToSend, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -37,14 +43,17 @@ export const Cards = () => {
                 toast.error('Error al crear la tarjeta');
             }
         } catch (error) {
-            console.error('Error:', error);
+            console.error('Error:', error.response ? error.response.data : error.message);
+            if (error.response && error.response.data) {
+                console.error('Detalles del error:', error.response.data);
+            }
             toast.error('Hubo un error al crear la tarjeta. Por favor, intenta nuevamente.');
         }
     };
 
     const fetchCards = async () => {
         try {
-            const response = await axios.get('http://192.168.1.24:8000/api/cards/');
+            const response = await axios.get('http://127.0.0.1:8000/api/cards/');
             setCards(response.data);
         } catch (error) {
             console.error('Error fetching cards:', error);
@@ -52,8 +61,23 @@ export const Cards = () => {
         }
     };
 
+    const fetchPersonajes = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/personajes/');
+            setPersonajes(response.data);
+        } catch (error) {
+            console.error('Error fetching personajes:', error);
+            toast.error('Hubo un error al obtener los personajes.');
+        }
+    };
+
+    useEffect(() => {
+        fetchCards();
+        fetchPersonajes();
+    }, []);
+
     return (
-        <section className="blog__section">
+        <section className="blog__section" id='frases'>
             <div className="blog__container">
                 <div className="card-principal">
                     <h3 className="card__saludo">Bienvenidos a StarBlog</h3>
@@ -82,27 +106,22 @@ export const Cards = () => {
                                 onChange={handleInputChange}
                             />
 
-                            <input
-                                type="text"
-                                name="nombre"
-                                placeholder="Nombre"
-                                value={formData.nombre}
-                                onChange={handleInputChange}
-                            />
-
                             <select className='select__form' name="icono" value={formData.icono} onChange={handleInputChange}>
                                 <option value="fa-solid fa-jedi">Jedi</option>
                                 <option value="fa-brands fa-old-republic">Old Republic</option>
                                 <option value="fa-brands fa-galactic-republic">Galactic Republic</option>
                                 <option value="fa-brands fa-galactic-senate">Galactic Senate</option>
                             </select>
-                            
-                            <select className='select__form' name="color" value={formData.color} onChange={handleInputChange}>
-                                <option value="rojos">Sith</option>
-                                <option value="azules">Jedi Azul</option>
-                                <option value="verdes">Jedi Verde</option>
-                                <option value="star">The Force</option>
+
+                            <select className='select__form' name="personaje_id" value={formData.personaje_id} onChange={handleInputChange}>
+                                <option value="">Selecciona un personaje</option>
+                                {personajes.map((personaje) => (
+                                    <option key={personaje.id} value={personaje.id}>
+                                        {personaje.nombre}
+                                    </option>
+                                ))}
                             </select>
+
                             <button type="submit" className='button__card'>Guardar</button>
                         </form>
                     </div>
@@ -113,3 +132,5 @@ export const Cards = () => {
         </section>
     );
 };
+
+export default Cards;

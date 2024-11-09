@@ -404,6 +404,23 @@
         font-family: 'FontAwesome';
         letter-spacing: 5px;
     }
+
+    #scroller {
+        font-family: sans-serif;
+        font-weight: bold;
+        font-size: 350%;
+        text-align: justify;
+        overflow: hidden;
+        height: 50em;
+        width: 14em;
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        margin-left: -10em;
+        z-index: 0;
+        transform: perspective(350px) rotateX(25deg);
+        transform-origin: 50% 100%;
+    }
 }
 
 @media (max-width: 385px) {

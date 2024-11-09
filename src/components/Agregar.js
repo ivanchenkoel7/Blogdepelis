@@ -44,7 +44,7 @@ const Agregar = ({ setListadoState }) => {
         formData.append('episodio', episodio);
         formData.append('image', image);
 
-        axios.post('http://192.168.1.24:8000/api/peliculas/', formData, {
+        axios.post('http://127.0.0.1:8000/api/peliculas/', formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

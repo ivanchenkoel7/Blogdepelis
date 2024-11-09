@@ -5,10 +5,11 @@ import { toast } from 'react-toastify';
 const CardList = () => {
     const [cards, setCards] = useState([]);
 
+    // Función para obtener las tarjetas desde la API
     useEffect(() => {
         const fetchCards = async () => {
             try {
-                const response = await axios.get('http://192.168.1.24:8000/api/cards/');
+                const response = await axios.get('http://127.0.0.1:8000/api/cards/');
                 setCards(response.data);
             } catch (error) {
                 console.error('Error fetching cards:', error);
@@ -16,26 +17,20 @@ const CardList = () => {
             }
         };
 
-        // Llamar a fetchCards inmediatamente
-        fetchCards();
+        fetchCards(); // Obtener las tarjetas al cargar el componente
+        const intervalId = setInterval(fetchCards, 5000); // Actualizar cada 5 segundos
 
-        // Configurar el polling para llamar a fetchCards cada 5 segundos
-        const intervalId = setInterval(fetchCards, 5000);
-
-        // Limpiar el intervalo cuando el componente se desmonte
-        return () => clearInterval(intervalId);
+        return () => clearInterval(intervalId); // Limpiar el intervalo al desmontar el componente
     }, []);
 
     return (
         <div className="cards__frases">
             {cards.length > 0 ? (
                 cards.map((card) => (
-                    <div key={card.id} className={`card ${card.color}-border`}>
-                        <h3 className="card__frase">{card.frase}</h3>
+                    <div key={card.id} className={`card ${card.personaje.color}-border`}>
+                        <h3 className={`card__frase ${card.personaje.color}-text`}>{card.frase}</h3>
                         <i className={card.icono}></i>
-                        <strong className={`card__nombre ${card.color}`}>
-                            {card.nombre}
-                        </strong>
+                        <strong className={`card__nombre ${card.personaje.color}-text`}>{card.personaje.nombre}</strong>
                     </div>
                 ))
             ) : (

@@ -11,9 +11,11 @@ import { Listado } from './components/Listado';
 import ToggleSidebarButton from './components/ToggleSidebarButton';
 import { useState, useEffect } from 'react';
 import { Cards } from './components/Cards';
+import { StarScroll } from './components/StarScroll';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import PersonajesList from './components/PersonajesList';
 
 function App() {
   const [listadoState, setListadoState] = useState([]);
@@ -26,7 +28,7 @@ function App() {
 
   useEffect(() => {
     const fetchPeliculas = () => {
-      axios.get('http://192.168.1.24:8000/api/peliculas/')
+      axios.get('http://127.0.0.1:8000/api/peliculas/')
         .then(response => {
           setListadoState(response.data);
         })
@@ -65,16 +67,16 @@ function App() {
           </li>
 
           <li className="nav__item">
-            <Buscador listadoState={listadoState} setListadoState={setListadoState} setIsBuscadorActive={setIsBuscadorActive} />  
+            <Buscador listadoState={listadoState} setListadoState={setListadoState} setIsBuscadorActive={setIsBuscadorActive} />
           </li>
-          
+
           <li className="nav__item">
             <img className="nav__icon" src={lightsaber} alt="Icono Blog" />
-            <a className="nav__link" href="#/">Blog</a>
+            <a className="nav__link" href="#frases">Frases</a>
           </li>
           <li className="nav__item">
             <img className="nav__icon" src={lightsaber} alt="Icono Contacto" />
-            <a className="nav__link" href="#/">Contacto</a>
+            <a className="nav__link" href="#/">Personajes</a>
           </li>
         </ul>
         <audio id="hover-sound" src="/sounds/Lightsaber.mp3" preload="auto"></audio>
@@ -83,12 +85,8 @@ function App() {
       <NavWithSound />
 
       <header className="header__react" id='index'>
-        <div className="pre___movie">
-          <h4 className="pre__header">Starblog</h4>
-          <img className="header__icon" src={lightsaber} alt="Icono Inicio" />
-          <hr className="hr__header" id="linea" />
-        </div>
-        <h1 className="header__title">Sitio de Peliculas</h1>
+        <div className="star-background"></div>
+        <StarScroll />
         <div className="bolaNavidad"></div>
         <div className="xwing">
           <img src={xwing} className="img__x" alt="xwing" />
@@ -98,15 +96,16 @@ function App() {
         <audio id="hover-sound2" src="/sounds/intro.mp3" preload="auto"></audio>
       </header>
 
+      <PersonajesList />
+
       <Cards />
 
       <main className="main__react" id='movies'>
         <section className="main__content">
-          <h2 className="title__section">Filmografia</h2> 
+          <h2 className="title__section">Filmografia</h2>
           <Listado listadoState={listadoState} setListadoState={setListadoState} />
         </section>
         <ToggleSidebarButton toggleSidebar={toggleSidebar} />
-    
         <aside className={`main__sidebar ${isSidebarActive ? 'active' : ''}`}>
           <div className="forms__sec">
             <Agregar setListadoState={setListadoState} />

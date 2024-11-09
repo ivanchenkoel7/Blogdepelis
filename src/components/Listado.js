@@ -7,7 +7,7 @@ export const Listado = ({ listadoState, setListadoState }) => {
     const [editar, setEditar] = useState(0);
 
     const conseguirPeliculas = () => {
-        axios.get('http://192.168.1.24:8000/api/peliculas/')
+        axios.get('http://127.0.0.1:8000/api/peliculas/')
             .then(response => {
                 setListadoState(response.data);
             })
