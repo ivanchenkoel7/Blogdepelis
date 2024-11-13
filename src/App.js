@@ -76,7 +76,7 @@ function App() {
           </li>
           <li className="nav__item">
             <img className="nav__icon" src={lightsaber} alt="Icono Contacto" />
-            <a className="nav__link" href="#/">Personajes</a>
+            <a className="nav__link" href="#personajes">Personajes</a>
           </li>
         </ul>
         <audio id="hover-sound" src="/sounds/Lightsaber.mp3" preload="auto"></audio>

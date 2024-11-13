@@ -90,7 +90,7 @@ const PersonajesList = () => {
     }, []);
 
     return (
-        <section className="personajes">
+        <section className="personajes" id='personajes'>
             <h2 className="header__title">Personajes</h2>
             <button className='button__personaje' onClick={() => setShowForm(!showForm)}>Agregar Personaje</button>
 

@@ -994,6 +994,8 @@ form__aside-search input::placeholder{
     color: #fff;
     font-family: 'Poller One', sans-serif;
     padding: 5px;
+    width: 90%;
+    overflow: hidden;
 }
 
 .card__nombre {
@@ -1456,8 +1458,8 @@ form__aside-search input::placeholder{
 }
 
 .personaje:hover {
-    width: 600px;
-    height: 600px;
+    width: 500px;
+    height: 500px;
     border-radius: 3%;
     background-color: #000000;
 }
