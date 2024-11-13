@@ -38,33 +38,33 @@ const Agregar = ({ setListadoState }) => {
             return;
         }
 
-        const formData = new FormData();
-        formData.append('titulo', titulo);
-        formData.append('descripcion', descripcion);
-        formData.append('episodio', episodio);
-        formData.append('image', image);
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+            const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
 
-        axios.post('http://127.0.0.1:8000/api/peliculas/', formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
+            try {
+                const response = await axios.post('https://blogpelis-back.onrender.com/api/peliculas/', {
+                    titulo,
+                    descripcion,
+                    episodio,
+                    image_base64: base64String,
+                });
+                setListadoState(prevState => [...prevState, response.data]);
+                toast.success('Pelicula Agregada exitosamente');
+            } catch (error) {
+                console.error('Hubo un error al agregar la película:', error);
+                toast.error('Hubo un error al agregar la película. Por favor, intenta nuevamente.');
             }
-        })
-        .then(response => {
-            setListadoState(prevState => [...prevState, response.data]);
-            toast.success('Pelicula Agregada exitosamente');
-        })
-        .catch(error => {
-            console.error('Hubo un error al agregar la película:', error);
-            toast.error('Hubo un error al agregar la película. Por favor, intenta nuevamente.');
-        });
 
-        // Limpiar el formulario
-        setPeliculaState({
-            titulo: '',
-            descripcion: '',
-            episodio: '',
-            image: null
-        });
+            // Limpiar el formulario
+            setPeliculaState({
+                titulo: '',
+                descripcion: '',
+                episodio: '',
+                image: null
+            });
+        };
+        reader.readAsDataURL(image);
     };
 
     return (

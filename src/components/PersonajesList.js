@@ -35,35 +35,42 @@ const PersonajesList = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const formDataToSend = new FormData();
-        for (const key in formData) {
-            formDataToSend.append(key, formData[key]);
+        if (!formData.nombre || !formData.descripcion || !formData.color || !formData.image) {
+            toast.error('Por favor, completa todos los campos.');
+            return;
         }
 
-        try {
-            const response = await axios.post('http://127.0.0.1:8000/api/personajes/', formDataToSend, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+            const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
+
+            try {
+                const response = await axios.post('https://blogpelis-back.onrender.com/api/personajes/', {
+                    nombre: formData.nombre,
+                    descripcion: formData.descripcion,
+                    color: formData.color,
+                    image_base64: base64String,
+                });
+                if (response.status === 201) {
+                    toast.success('Personaje creado exitosamente');
+                    setShowForm(false);
+                    setFormData(initialFormData); // Limpiar el formulario
+                    setImagePreview(null); // Limpiar la vista previa de la imagen
+                    fetchPersonajes(); // Actualizar la lista de personajes
+                } else {
+                    toast.error('Error al crear el personaje');
                 }
-            });
-            if (response.status === 201) {
-                toast.success('Personaje creado exitosamente');
-                setShowForm(false);
-                setFormData(initialFormData); // Limpiar el formulario
-                setImagePreview(null); // Limpiar la vista previa de la imagen
-                fetchPersonajes(); // Actualizar la lista de personajes
-            } else {
-                toast.error('Error al crear el personaje');
+            } catch (error) {
+                console.error('Error:', error);
+                toast.error('Hubo un error al crear el personaje. Por favor, intenta nuevamente.');
             }
-        } catch (error) {
-            console.error('Error:', error);
-            toast.error('Hubo un error al crear el personaje. Por favor, intenta nuevamente.');
-        }
+        };
+        reader.readAsDataURL(formData.image);
     };
 
     const fetchPersonajes = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:8000/api/personajes/');
+            const response = await axios.get('https://blogpelis-back.onrender.com/api/personajes/');
             setPersonajes(response.data);
         } catch (error) {
             console.error('Error fetching personajes:', error);
@@ -118,7 +125,6 @@ const PersonajesList = () => {
                             value={formData.descripcion}
                             onChange={handleInputChange}
                         />
-
 
                         <select className='select__form' name="color" value={formData.color} onChange={handleInputChange}>
                             <option value="rojos">Sith</option>

@@ -53,7 +53,8 @@
     }
 
     .header__title {
-        font-size: 30px;
+        font-size: 29px;
+        margin-bottom: 10px;
     }
 
     .pre__header {
@@ -75,6 +76,7 @@
 
     .bolaNavidad {
         top: 70px;
+
     }
 
     @keyframes appearInNewPlace {
@@ -83,7 +85,7 @@
             opacity: 0;
         }
         100% {
-            left: 74%;
+            left: 75%;
             opacity: 1;
         }
     }
@@ -99,6 +101,7 @@
         width: 150px;
         height: 70px;
         left: -32%;
+        top: 32%;
     }
 
     .caza-tie {
@@ -250,7 +253,7 @@
     }
 
     .form__aside-search input[type="text"] {
-        width: 100px;
+        width: 90px;
         height: 30px;
         padding-left: 0px;
         border: 2px solid #ddfa05;
@@ -347,21 +350,21 @@
     }
 
     .card:hover {
-        height: 100px;
-        width: 90%;
+        height: 90px;
+        width: 75%;
     }
 
     .card:not(:hover) {
         height: 10px;
-        width: 90%;
+        width: 75%;
     }
 
     .card__frase {
-        font-size: 15px;
+        font-size: 12px;
     }
 
     .card i {
-        font-size: 30px;
+        font-size: 22px;
     }
 
     .title__section {
@@ -400,9 +403,9 @@
 
     .card__nombre {
         text-transform: uppercase;
-        font-size: 15px;
+        font-size: 12px;
         font-family: 'FontAwesome';
-        letter-spacing: 5px;
+        letter-spacing: 2px;
     }
 
     #scroller {
@@ -412,15 +415,73 @@
         text-align: justify;
         overflow: hidden;
         height: 50em;
-        width: 14em;
+        width: 8em;
         position: absolute;
         bottom: 0;
         left: 50%;
-        margin-left: -10em;
-        z-index: 0;
-        transform: perspective(350px) rotateX(25deg);
-        transform-origin: 50% 100%;
+        margin-left: -4em;
     }
+
+    .personaje:hover {
+        width: 300px;
+        height: 400px;
+    }
+
+    .description__personaje {
+        font-size: 14px;
+        max-width: 80%;
+    }
+
+    .name__personaje {
+        font-size: 22px;
+    }
+
+    .personajes__container {
+        margin-top: 75px;
+    }
+
+    .personajes {
+        margin-top: 260px;
+    }
+
+    .logo logo-final {
+        top: 57%;
+    }
+        
+    .intro {
+        font-size: 2.25rem;
+    }
+
+    #content p{
+        font-size: 1.5rem;
+    }
+
+    .button__personaje {
+        width: 60%;
+        height: 30px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        padding: 5px;
+        font-family: poetsen one;
+    }
+
+    .form__car-one button{
+        width: 60%;
+        height: 30px;
+        text-decoration: none;
+        font-size: 12px;
+        font-weight: bold;
+        letter-spacing: 4px;
+        padding: 5px;
+        font-family: poetsen one;
+    }
+        
+
+
+
+
 }
 
 @media (max-width: 385px) {

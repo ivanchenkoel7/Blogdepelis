@@ -437,7 +437,7 @@ body{
     font-size: 20px;
     font-weight: bold;
     font-family: Starjout;
-    margin-left: 75px;
+    margin-left: 105px;
     margin-bottom: 0;
 }
 
@@ -1274,7 +1274,7 @@ form__aside-search input::placeholder{
 #content {
 	position: absolute;
 	top: 100%;
-	animation: scoller 60s linear 16s;
+	animation: scoller 70s linear 20s;
 }
 
 @keyframes scoller {
@@ -1546,6 +1546,8 @@ form__aside-search input::placeholder{
         border: 1px solid #ddfa05;
         border-radius: 15px;
         background-color: transparent;
+        color: #fff;
+        font-size: 15px;
 }
 
 .form__car-one button{

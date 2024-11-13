@@ -51,19 +51,18 @@ export const StarScroll = () => {
                     <h4 className="pre__header">Star Wars</h4>
                     <hr className="hr__header" id="linea" />
                 </div>
-                <h1 className="header__title">Blog de Peliculas</h1>
+                <h1 className="header__title">Blog de Películas</h1>
             </div>
             <div id="scroller">
                 <div id="content">
                     <p id="title">Episode XXIX</p>
-                    <p id="subtitle">Ivanchenko desarrolla starblog</p>
+                    <p id="subtitle">Ivanchenko desarrolla StarBlog</p>
                     <br />
-                    <p>Todo comenzo como un simple proyecto de React en el curso de Victor Robles Web.</p>
-                    <p>La premisa consistia en crear un sitio web que allmacenara peliculas y guardarlas en el local storage.</p>
-                    <p>Continue puliendo el estilo y siempre pensando que si haci algo mas, podria ir aprendiendo en el camino.</p>
-                    <p>Fue asi que me incline en hacer una pagina interactiva en la cual se viera el trabajo pero ademas algo que a mi me gusta mucho como lo es Star Wars.</p>
-                    <p>Luego de un arduo trabajo y muchas horas de pulido llegue a esto que es de mi agrado, sabiendo que le falta y siempre se puede mejorar.</p>
-                    <p>Ut ultrices ultrices enim. Curabitur sit amet mauris. Morbi in dui quis est pulvinar ullamcorper. Nulla facilisi. Integer lacinia sollicitudin massa. Cras metus. Sed aliquet risus a tortor. Integer id quam. Morbi mi. Quisque nisl felis, venenatis tristique, dignissim in, ultrices sit amet, augue. Proin sodales libero eget ante. Nulla quam.</p>
+                    <p>Todo comenzó como un simple proyecto de React en el curso de Víctor Robles Web.</p>
+                    <p>La premisa consistía en crear un sitio web que almacenara películas y guardarlas en el local storage.</p>
+                    <p>Continué puliendo el estilo y siempre pensando que si hacía algo más, podría ir aprendiendo en el camino.</p>
+                    <p>Fue así que me incliné en hacer una página interactiva en la cual se viera el trabajo pero además algo que a mí me gusta mucho como lo es Star Wars.</p>
+                    <p>Luego de un arduo trabajo y muchas horas de pulido llegué a esto que es de mi agrado, sabiendo que le falta y siempre se puede mejorar.</p>
                 </div>
             </div>
             <div className="star-background"></div>

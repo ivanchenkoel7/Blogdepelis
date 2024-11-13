@@ -29,7 +29,7 @@ export const Cards = () => {
         };
         console.log('Datos enviados:', dataToSend); // Agregar esta línea para depuración
         try {
-            const response = await axios.post('http://127.0.0.1:8000/api/cards/', dataToSend, {
+            const response = await axios.post('https://blogpelis-back.onrender.com/api/cards/', dataToSend, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -39,6 +39,7 @@ export const Cards = () => {
                 setShowForm(false);
                 setFormData(initialFormData); // Limpiar el formulario
                 fetchCards(); // Actualizar la lista de tarjetas
+                fetchPersonajes(); // Actualizar la lista de personajes
             } else {
                 toast.error('Error al crear la tarjeta');
             }
@@ -53,7 +54,7 @@ export const Cards = () => {
 
     const fetchCards = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:8000/api/cards/');
+            const response = await axios.get('https://blogpelis-back.onrender.com/api/cards/');
             setCards(response.data);
         } catch (error) {
             console.error('Error fetching cards:', error);
@@ -63,7 +64,7 @@ export const Cards = () => {
 
     const fetchPersonajes = async () => {
         try {
-            const response = await axios.get('http://127.0.0.1:8000/api/personajes/');
+            const response = await axios.get('https://blogpelis-back.onrender.com/api/personajes/');
             setPersonajes(response.data);
         } catch (error) {
             console.error('Error fetching personajes:', error);

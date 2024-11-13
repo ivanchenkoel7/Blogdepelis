@@ -12,7 +12,7 @@ const PersonajeCard = ({ personaje }) => {
   return (
     <div className={`personaje ${personaje.color}-border`} id={personaje.color}>
       <img
-        src={personaje.image}
+        src={`data:image/webp;base64,${personaje.image_base64}`}
         className="img__personaje"
         alt={`Imagen de ${personaje.nombre}`}
       />

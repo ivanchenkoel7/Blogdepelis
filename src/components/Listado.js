@@ -7,7 +7,7 @@ export const Listado = ({ listadoState, setListadoState }) => {
     const [editar, setEditar] = useState(0);
 
     const conseguirPeliculas = () => {
-        axios.get('http://127.0.0.1:8000/api/peliculas/')
+        axios.get('https://blogpelis-back.onrender.com/api/peliculas/')
             .then(response => {
                 setListadoState(response.data);
             })
@@ -23,7 +23,7 @@ export const Listado = ({ listadoState, setListadoState }) => {
     }, [setListadoState]);
 
     const borrarPelicula = (id) => {
-        axios.delete(`http://192.168.1.24:8000/api/peliculas/${id}/`)
+        axios.delete(`https://blogpelis-back.onrender.com/api/peliculas/${id}/`)
             .then(() => {
                 setListadoState(prevState => prevState.filter(pelicula => pelicula.id !== id));
                 toast.success('Pelicula eliminada exitosamente');
@@ -42,7 +42,7 @@ export const Listado = ({ listadoState, setListadoState }) => {
                         <article key={pelicula.id} className="movie__item">
                             <div className="item__image">
                                 <img
-                                    src={pelicula.image}
+                                    src={`data:image/webp;base64,${pelicula.image_base64}`}
                                     className="img__movie"
                                     alt="Imagen de la pelicula"
                                 />
