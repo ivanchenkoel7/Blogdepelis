@@ -11,6 +11,13 @@
     font-style: normal;
 }
 
+@fontface{
+    font-family: 'franklingothic_demi';
+    src: url('./fonts/franklin/franklingothic_demi.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 
 body{
     font-family: 'Poller One', cursive;
@@ -398,12 +405,12 @@ body{
 
 .img__movie{
     width: 100%;
-    height: 900px;
+    height: 800px;
     object-fit: cover;
     margin-top: 50px;
     margin-left: 20px;
     border-radius: 15px;
-    opacity: 0.7;
+    opacity: 0.3;
     transition: all 0.3s ease;
 }
 
@@ -1242,8 +1249,8 @@ form__aside-search input::placeholder{
 .shooting-star {
     animation: shooting-star 1.5s linear infinite;
     background-color: rgb(55, 226, 238);
-    width: 5px; 
-    height: 5px; 
+    width: 4px; 
+    height: 4px; 
     border-radius: 50%;
 }
 
@@ -1306,7 +1313,7 @@ form__aside-search input::placeholder{
 	transform: translate(-50%, -50%);
 	z-index: 2;
 	color: rgb(75, 213, 238);
-	font-family: "Open Sans", sans-serif;
+	font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 	font-weight: 500;
 	font-size: 3.25rem;
 	width: 80%;
