@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     const fetchPeliculas = () => {
-      axios.get('http://192.168.1.14/api/peliculas/')
+      axios.get('https://ivanchenkoel7.dev/api/peliculas/')
         .then(response => {
           setListadoState(response.data);
         })
