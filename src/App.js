@@ -28,7 +28,7 @@ function App() {
 
   useEffect(() => {
     const fetchPeliculas = () => {
-      axios.get('https://blogpelis-back.onrender.com/api/peliculas/')
+      axios.get('http://192.168.1.14/api/peliculas/')
         .then(response => {
           setListadoState(response.data);
         })

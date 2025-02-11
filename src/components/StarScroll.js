@@ -8,7 +8,7 @@ export const StarScroll = () => {
         for (let i = 0; i < stars; i++) {
             let star = document.createElement("div");
             star.className = 'stars';
-            if (Math.random() < 0.1) { // 10% de las estrellas serán fugaces
+            if (Math.random() < 0.05) { // 10% de las estrellas serán fugaces
                 star.classList.add('shooting-star');
                 star.style.animationDelay = `${Math.random() * 5}s`; // Retraso aleatorio para la animación
             }

@@ -1114,7 +1114,7 @@ form__aside-search input::placeholder{
     font-weight: bold;
     letter-spacing: 8px;
     padding: 10px;
-    margin-top: 20px;
+    margin-top: 50px;
     transition: all 0.3s ease;
     
 }

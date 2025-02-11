@@ -29,7 +29,7 @@ export const Cards = () => {
         };
         console.log('Datos enviados:', dataToSend); // Agregar esta línea para depuración
         try {
-            const response = await axios.post('https://blogpelis-back.onrender.com/api/cards/', dataToSend, {
+            const response = await axios.post('https://ivanchenkoel7.dev/api/cards/', dataToSend, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
@@ -54,7 +54,7 @@ export const Cards = () => {
 
     const fetchCards = async () => {
         try {
-            const response = await axios.get('https://blogpelis-back.onrender.com/api/cards/');
+            const response = await axios.get('https://ivanchenkoel7.dev/api/cards/');
             setCards(response.data);
         } catch (error) {
             console.error('Error fetching cards:', error);
@@ -64,7 +64,7 @@ export const Cards = () => {
 
     const fetchPersonajes = async () => {
         try {
-            const response = await axios.get('https://blogpelis-back.onrender.com/api/personajes/');
+            const response = await axios.get('https://ivanchenkoel7.dev/api/personajes/');
             setPersonajes(response.data);
         } catch (error) {
             console.error('Error fetching personajes:', error);

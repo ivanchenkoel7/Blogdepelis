@@ -45,7 +45,7 @@ const PersonajesList = () => {
             const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
 
             try {
-                const response = await axios.post('https://blogpelis-back.onrender.com/api/personajes/', {
+                const response = await axios.post('https://ivanchenkoel7.dev/api/personajes/', {
                     nombre: formData.nombre,
                     descripcion: formData.descripcion,
                     color: formData.color,
@@ -70,7 +70,7 @@ const PersonajesList = () => {
 
     const fetchPersonajes = async () => {
         try {
-            const response = await axios.get('https://blogpelis-back.onrender.com/api/personajes/');
+            const response = await axios.get('https://ivanchenkoel7.dev/api/personajes/');
             setPersonajes(response.data);
         } catch (error) {
             console.error('Error fetching personajes:', error);

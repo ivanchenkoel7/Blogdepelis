@@ -43,7 +43,7 @@ const Agregar = ({ setListadoState }) => {
             const base64String = reader.result.replace('data:', '').replace(/^.+,/, '');
 
             try {
-                const response = await axios.post('https://blogpelis-back.onrender.com/api/peliculas/', {
+                const response = await axios.post('https://ivanchenkoel7.dev/api/peliculas/', {
                     titulo,
                     descripcion,
                     episodio,

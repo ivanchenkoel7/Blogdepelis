@@ -46,7 +46,7 @@ export const Editar = ({ pelicula, conseguirPeliculas, setEditar }) => {
             formData.append('image', image);
         }
 
-        axios.put(`https://blogpelis-back.onrender.com/api/peliculas/${id}/`, formData, {
+        axios.put(`https://ivanchenkoel7.dev/api/peliculas/${id}/`, formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

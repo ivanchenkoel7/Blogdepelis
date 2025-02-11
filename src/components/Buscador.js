@@ -24,7 +24,7 @@ export const Buscador = ({ listadoState, setListadoState, setIsBuscadorActive })
 
         if (term.length <= 1 || peliculas_encontradas.length === 0) {
             try {
-                const response = await axios.get(`https://blogpelis-back.onrender.com/api/peliculas/?search=${term}`);
+                const response = await axios.get(`https://ivanchenkoel7.dev/api/peliculas/?search=${term}`);
                 console.log('Respuesta de la API:', response.data); // Imprimir la respuesta completa
                 peliculas_encontradas = response.data || []; // La respuesta es una lista de objetos Pelicula
                 console.log('Peliculas encontradas en la API:', peliculas_encontradas);

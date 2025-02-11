@@ -7,7 +7,7 @@ export const Listado = ({ listadoState, setListadoState }) => {
     const [editar, setEditar] = useState(0);
 
     const conseguirPeliculas = () => {
-        axios.get('https://blogpelis-back.onrender.com/api/peliculas/')
+        axios.get('https://ivanchenkoel7.dev/api/peliculas/')
             .then(response => {
                 setListadoState(response.data);
             })
@@ -23,7 +23,7 @@ export const Listado = ({ listadoState, setListadoState }) => {
     }, [setListadoState]);
 
     const borrarPelicula = (id) => {
-        axios.delete(`https://blogpelis-back.onrender.com/api/peliculas/${id}/`)
+        axios.delete(`https://ivanchenkoel7.dev/api/peliculas/${id}/`)
             .then(() => {
                 setListadoState(prevState => prevState.filter(pelicula => pelicula.id !== id));
                 toast.success('Pelicula eliminada exitosamente');
