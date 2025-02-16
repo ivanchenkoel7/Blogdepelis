@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 export const StarScroll = () => {
     useEffect(() => {
-        const stars = 400;
+        const stars = 450;
         const starBackground = document.querySelector('.star-background');
 
         for (let i = 0; i < stars; i++) {
