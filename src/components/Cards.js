@@ -77,6 +77,12 @@ export const Cards = () => {
         fetchPersonajes();
     }, []);
 
+    useEffect(() => {
+        if (showForm) {
+            fetchPersonajes();
+        }
+    }, [showForm]);
+
     return (
         <section className="blog__section" id='frases'>
             <div className="blog__container">
@@ -90,7 +96,7 @@ export const Cards = () => {
                     </div>
                     <p className="card__text">
                         Aqui encontrarás información sobre las películas de Star
-                        Wars, addemas de grandes frases celebres.
+                        Wars, ademas de grandes frases celebres.
                     </p>
                     <a href="#movies" className="card__movies">Películas</a>
                     <button className='button__card' onClick={() => setShowForm(!showForm)}>Agregar Frase</button>

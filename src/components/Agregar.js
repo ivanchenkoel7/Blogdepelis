@@ -99,6 +99,7 @@ const Agregar = ({ setListadoState }) => {
                 {image && <img src={URL.createObjectURL(image)} alt="Vista previa" style={{ maxWidth: '200px', marginTop: '10px' }} />}
                 <input type="submit" id='save' value="Agregar" />
             </form>
+            <small style={{ display: 'block', marginTop: '10px', color: '#888' }}>Solo imágenes en formato .webp o imágenes de peso ligero.</small>
         </div>
     );
 };

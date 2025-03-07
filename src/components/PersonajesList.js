@@ -91,7 +91,11 @@ const PersonajesList = () => {
 
     return (
         <section className="personajes" id='personajes'>
-            <h2 className="header__title">Personajes</h2>
+            <div className="header__underline">
+            <h2 className="header__title2">Personajes</h2>
+                <p className="header__description">Conoce a los personajes de la saga Star Wars</p>
+                <p className="header__description">Haz clic en el botón para agrega tu personaje favorito</p>
+            </div>
             <button className='button__personaje' onClick={() => setShowForm(!showForm)}>Agregar Personaje</button>
 
             {showForm && (

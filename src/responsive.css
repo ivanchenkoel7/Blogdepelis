@@ -100,7 +100,7 @@
     .falcon {
         width: 150px;
         height: 70px;
-        left: -32%;
+        left: -34%;
         top: 32%;
     }
 
@@ -337,6 +337,7 @@
         flex-direction: column;
         justify-content: space-evenly;
         align-items: center;
+        margin-top: 20px;
     }
 
     .card {
@@ -422,15 +423,34 @@
         margin-left: -4em;
     }
 
+    .header__title2 {
+        font-size: 30px;
+    }
+
+    .header__description {
+        font-size: 15px;
+    }
+
+    .personaje{
+        width: calc(42% - 20px);
+    }
+
     .personaje:hover {
         width: 300px;
         height: 400px;
     }
 
     .description__personaje {
-        font-size: 14px;
-        max-width: 80%;
+        font-size: 12px;
+        max-width: 90%;
+        margin-top: 0;
+        margin-bottom: 0;
     }
+
+    .img__personaje{
+        height: 49%;
+    }
+
 
     .name__personaje {
         font-size: 20px;
@@ -438,6 +458,7 @@
 
     .personajes__container {
         margin-top: 75px;
+        flex-direction: column;
     }
 
     .personajes {
@@ -465,6 +486,7 @@
         letter-spacing: 4px;
         padding: 5px;
         font-family: poetsen one;
+        margin-top: 10px;
     }
 
     .form__car-one button{
@@ -477,6 +499,94 @@
         padding: 5px;
         font-family: poetsen one;
     }
+
+    .saludos__container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 5px;
+        margin-right: 0;
+    }
+
+    .saludo__title {
+        font-size: 25px;
+    }
+
+    .saludo__text {
+        font-size: 16px;
+        font-family: Poller one;
+        margin-bottom: 15px;
+        color: #fff;
+    }
+
+    .saludo__button {
+        width: 35%;
+        height: 35px;
+        font-size: 12px;
+        padding: 0px;
+        margin-top: 10px;
+    }
+
+    .img__profile {
+        width: 65px;
+        height: 65px;
+    }
+
+    .jedi-verde.name__saludo {
+        font-size: 20px;
+    }
+
+    .jedi-azul.name__saludo {
+        font-size: 20px;
+    }
+
+    .sith.name__saludo {
+        font-size: 20px;
+    }
+
+    .the-force.name__saludo {
+        font-size: 20px;
+    }
+
+    .name__job {
+        font-size: 16px;
+    }
+
+    .card__profile {
+        height: 200px;
+    }
+
+    .back::before {
+        width: 300px;
+        height: 230%;
+    }
+
+    .front-content .badge {
+        padding: 5px 5px;
+        font-size: 10px;
+    }
+
+    .description {
+        height: 90px;
+        top: 100px;
+    }
+
+    .title__front {
+        font-size: 12px;
+    }
+
+    .card-footer {
+        font-size: 11px;
+        margin: 10px;
+    }
+
+    .footer__link {
+        font-size: 12px;
+    }
+
+
+    
+
+
         
 
 

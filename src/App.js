@@ -1,7 +1,7 @@
 import './App.css';
 import './responsive.css';
 
-import iv7logo from './images/iv7logo.webp';
+import iv7logo from './images/stargif.gif';
 import lightsaber from './images/lightsaber.ico';
 import xwing from './images/xwing.png';
 import NavWithSound from './components/NavWithSound';
@@ -16,6 +16,7 @@ import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PersonajesList from './components/PersonajesList';
+import ReseñasList from './components/ReseñasList';
 
 function App() {
   const [listadoState, setListadoState] = useState([]);
@@ -59,7 +60,7 @@ function App() {
         <ul className="nav__list">
           <li className="nav__item">
             <img className="nav__icon" src={lightsaber} alt="Icono Inicio" />
-            <a className="nav__link" href="#index">Inicio</a>
+            <a className="nav__link" href="#personajes">Personajes</a>
           </li>
           <li className="nav__item">
             <img className="nav__icon" src={lightsaber} alt="Icono Peliculas" />
@@ -76,7 +77,7 @@ function App() {
           </li>
           <li className="nav__item">
             <img className="nav__icon" src={lightsaber} alt="Icono Contacto" />
-            <a className="nav__link" href="#personajes">Personajes</a>
+            <a className="nav__link" href="#reseñas">Reseñas</a>
           </li>
         </ul>
         <audio id="hover-sound" src="/sounds/Lightsaber.mp3" preload="auto"></audio>
@@ -113,11 +114,13 @@ function App() {
         </aside>
       </main>
 
+      <ReseñasList />
+
       <footer className="footer__react">
         <div className="icons__footer">
           <i className="fa-solid fa-jedi"></i>
           <i className="fa-brands fa-old-republic"></i>
-          <h2 className="footer__text">Desarrollado por: Ivanchenkoel7</h2>
+          <h2 className="footer__text">Desarrollado por: <a className='footer__link' href='http://ivanchenkoel7.dev' >Ivanchenkoel7</a></h2>
           <i className="fa-brands fa-galactic-republic"></i>
           <i className="fa-brands fa-galactic-senate"></i>
         </div>
