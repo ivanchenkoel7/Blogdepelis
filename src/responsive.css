@@ -1,3 +1,311 @@
+@media (max-width: 1430px) {
+
+    .nav__link {
+        font-size: 17px;
+    }
+
+    .nav__list {
+        display: flex
+    ;
+        justify-content: flex-start;
+        align-items: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .nav__item {
+        list-style: none;
+        margin: 0 15px;
+    }
+
+    .form__aside-search input[type="text"] {
+        width: 250px;
+    }
+
+    .xwing {
+        width: 320px;
+        height: 140px;
+    }
+
+    .falcon {
+        width: 430px;
+        height: 200px;
+        left: -31%;
+    }
+
+    .caza-tie {
+        width: 200px;
+        height: 220px;
+        top: 16%;
+    }
+
+    .header__title {
+        font-size: 50px;
+    }
+
+    .pre__header {
+        font-size: 28px;
+        margin-left: 28%;
+    }
+
+    .header__title2 {
+        font-size: 38px;
+    }
+
+    .header__description {
+        font-size: 17px;
+    }
+
+    .button__personaje {
+        width: 25%;
+        height: 35px;
+        font-size: 14px;
+        letter-spacing: 5px;
+        margin-top: 25px;
+    }
+
+    .name__personaje {
+        font-size: 20px;
+    }
+
+    .card__saludo {
+        font-size: 30px;
+    }
+
+    .card__text {
+        font-size: 17px;
+        margin-top: 0;
+    }
+
+    .card-principal i {
+        font-size: 30px;
+    }
+
+    .card__movies {
+        height: 12px;
+        font-size: 12px;
+    }
+
+    .button__card {
+        width: 42%;
+        height: 33px;
+        font-size: 11px;
+        font-family: poller one;
+    }
+
+    .card {
+        height: 300px;
+    }
+
+    .card__frase {
+        font-size: 15px;
+    }
+
+    .card i {
+        font-size: 35px;
+    }
+
+    .card__nombre {
+        text-transform: uppercase;
+        font-size: 18px;
+    }
+
+    .title__section {
+        font-size: 50px;
+    }
+
+    .title__aside {
+        font-size: 1.2em;
+        margin-bottom: 15px;
+    }
+
+    .title__ep {
+        font-size: 40px;
+    }
+
+    .title__pre {
+        font-size: 18px;
+        margin-left: 72px;
+    }
+
+    .title__movie {
+        font-size: 25px;
+    }
+
+    .edit {
+        width: 160px;
+        height: 32px;
+        text-align: center;
+        margin-right: 2rem;
+        font-size: 18px;
+    }
+
+    .delete{
+        width: 160px;
+        height: 32px;
+        text-align: center;
+        font-size: 18px;
+    }
+
+    .img__movie {
+        width: 100%;
+        height: 500px;
+    }
+
+    .form__aside input[type="submit"] {
+        display: block;
+        padding: 5px 15px;
+        font-size: 15px;
+    }
+
+    .saludo__title {
+        font-size: 25px;
+    }
+
+    .saludo__text {
+        font-size: 18px;
+    }
+
+    .container__welcome {
+        height: 430px;
+        margin: 0;
+    }
+
+    .saludo__button {
+        width: 70%;
+        height: 36px;
+        font-size: 12px;
+        font-family: 'Poller One';
+        padding: 5px;
+    }
+
+    .img__profile {
+        width: 100px;
+        height: 100px;
+    }
+
+    .name__saludo {
+        font-size: 20px
+    }
+
+    .name__job {
+        font-size: 17px;
+    }
+
+    .card__profile {
+        width: 330px;
+        height: 230px;
+    }
+
+    .back::before {
+        width: 170px;
+        height: 175%;
+    }
+
+    .jedi-azul.name__saludo{
+        font-size: 20px;
+    }
+
+    .jedi-verde.name__saludo{
+        font-size: 20px;
+    }
+
+    .sith.name__saludo{
+        font-size: 20px;
+    }
+
+    .the-force.name__saludo{
+        font-size: 20px;
+    }
+
+    .front-content .badge{
+        font-size: 10px;
+    }
+
+    .title__front {
+        font-size: 13px;
+    }
+
+    .card-footer {
+        margin-top: 0px;
+        font-size: 10px;
+    }
+
+    .saludos__container {
+        align-items: flex-start;
+    }
+
+    .description {
+        height: 100px;
+        top: 120px;
+    }
+
+    .icons__footer i {
+        font-size: 30px;
+    }
+
+    .footer__react {
+        height: 60px;
+    }
+
+    .footer__text {
+        font-size: 15px;
+    }
+
+    .footer__link {
+        font-size: 15px;
+    }
+
+
+
+    
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
 @media (max-width: 430px) {
     .nav__react {
         height: 40px;
@@ -338,6 +646,7 @@
         justify-content: space-evenly;
         align-items: center;
         margin-top: 20px;
+        width: 100%;
     }
 
     .card {
@@ -584,13 +893,6 @@
     }
 
 
-    
-
-
-        
-
-
-
 
 }
 
@@ -688,7 +990,25 @@
         background-color: transparent;
         color: #fff;
         border-radius: 15px;
+
     }
+
+    .card__profile {
+        width: 370px;
+        height: 280px;
+    }
+
+    .footer__text {
+        font-size: 11px;
+    }
+
+    .icons__footer i {
+        font-size: 16px;
+    }
+    .icons__footer i {
+        margin: 0 0px;
+    }
+
 }
 
 @media (max-width: 340px) {
@@ -742,4 +1062,8 @@
         color: #fff;
         border-radius: 15px;
     }
+
+
+
 }
+

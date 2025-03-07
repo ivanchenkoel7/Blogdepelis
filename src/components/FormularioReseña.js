@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+import imageCompression from 'browser-image-compression';
 
 const FormularioReseña = ({ onSuccess, showForm }) => {
     const [formStyle, setFormStyle] = useState({
@@ -57,19 +58,30 @@ const FormularioReseña = ({ onSuccess, showForm }) => {
         }));
     };
 
-    const handleFileChange = (e) => {
+    const handleFileChange = async (e) => {
         const file = e.target.files[0];
         if (file) {
-            setFormData(prevState => ({
-                ...prevState,
-                profileImage: file
-            }));
+            try {
+                const compressedFile = await imageCompression(file, {
+                    maxSizeMB: 1,
+                    maxWidthOrHeight: 800,
+                    useWebWorker: true
+                });
 
-            const reader = new FileReader();
-            reader.onloadend = () => {
-                setImagePreview(reader.result);
-            };
-            reader.readAsDataURL(file);
+                setFormData(prevState => ({
+                    ...prevState,
+                    profileImage: compressedFile
+                }));
+
+                const reader = new FileReader();
+                reader.onloadend = () => {
+                    setImagePreview(reader.result);
+                };
+                reader.readAsDataURL(compressedFile);
+            } catch (error) {
+                console.error('Error al comprimir la imagen:', error);
+                toast.error('Hubo un error al comprimir la imagen');
+            }
         }
     };
 

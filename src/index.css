@@ -579,6 +579,7 @@ body{
     gap: 20px;
     padding: 20px;
     margin-top: 50px;
+    margin-right: 20px;
     background-color: rgb(255 255 255 / 20%);
     backdrop-filter: blur(5px);
     border-radius: 15px;
@@ -902,7 +903,7 @@ form__aside-search input::placeholder{
     margin-top: 100px;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
     text-align: center;
     flex-wrap: nowrap;
@@ -911,8 +912,10 @@ form__aside-search input::placeholder{
 .cards__frases{
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
+    justify-content: flex-start;
+    width: 75%;
+    flex-wrap: wrap;
+    overflow: hidden;
     
 }
 
@@ -980,14 +983,14 @@ form__aside-search input::placeholder{
 }
 
 .card {
-    width: 50px;
+    width: 4.8%;
     height: 350px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     flex-direction: column;
     text-align: center;
-    margin: 20px;
+    margin: 21px;
     padding: 10px;
     background-color: rgba(255, 255, 255, 0.1); 
     backdrop-filter: blur(px);
@@ -1643,6 +1646,15 @@ form__aside-search input::placeholder{
 
 
 /*nuevos estilos de reseñas*/
+
+.container__box-cards{
+    width: 78%;
+    height: auto;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 16px;
+}
 
 .card__profile {
     overflow: visible;

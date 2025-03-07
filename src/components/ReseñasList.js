@@ -63,8 +63,9 @@ const ReseñasList = () => {
                     }}
                 />
 
+                <div className='container__box-cards'>
                 {reseñas.map((reseña) => (
-                    <div key={reseña.id} className="container__cards-saludo">
+                        <div key={reseña.id} className="container__cards-saludo">
                         <div className="card__profile">
                             <div className="content__card">
                                 <div className={`back ${getBadgeClass(reseña.badge_display)}`}>
@@ -106,8 +107,9 @@ const ReseñasList = () => {
                                 </div>
                             </div>
                         </div>
-                    </div>
+                        </div>
                 ))}
+                </div>
             </div>
         </section>
     );
