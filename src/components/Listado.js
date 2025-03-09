@@ -22,6 +22,7 @@ export const Listado = ({ listadoState, setListadoState }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [setListadoState]);
 
+    // eslint-disable-next-line no-unused-vars
     const borrarPelicula = (id) => {
         axios.delete(`https://ivanchenkoel7.dev/api/peliculas/${id}/`)
             .then(() => {
@@ -32,6 +33,10 @@ export const Listado = ({ listadoState, setListadoState }) => {
                 console.error('Hubo un error al eliminar la película:', error);
                 toast.error('Hubo un error al eliminar la película. Por favor, intenta nuevamente.');
             });
+    };
+
+    const handleDeleteClick = () => {
+        toast.error('No tiene permisos para eliminar esta película');
     };
 
     return (
@@ -58,7 +63,8 @@ export const Listado = ({ listadoState, setListadoState }) => {
                                 <p className="description__movie">{pelicula.descripcion}</p>
                                 <div className="item__button">
                                     <button className="edit" onClick={() => { setEditar(pelicula.id) }}>Editar</button>
-                                    <button className="delete" onClick={() => borrarPelicula(pelicula.id)}>Eliminar</button>
+                                    {/* <button className="delete" onClick={() => borrarPelicula(pelicula.id)}>Eliminar</button> */}
+                                    <button className="delete" onClick={handleDeleteClick}>Eliminar</button>
                                 </div>
                                 <div className="edit__form">
                                     {editar === pelicula.id && (
