@@ -51,18 +51,19 @@ export const StarScroll = () => {
                     <h4 className="pre__header">Star Wars</h4>
                     <hr className="hr__header" id="linea" />
                 </div>
-                <h1 className="header__title">Blog de Películas</h1>
+                <h1 className="header__title">Star Blogs</h1>
             </div>
             <div id="scroller">
                 <div id="content">
                     <p id="title">Episode XXIX</p>
-                    <p id="subtitle">Ivanchenko desarrolla StarBlog</p>
+                    <p id="subtitle">Bienvenidos a StarBlog</p>
                     <br />
-                    <p>Todo comenzó como un simple proyecto de React en el curso de Víctor Robles Web.</p>
-                    <p>La premisa consistía en crear un sitio web que almacenara películas y guardarlas en el local storage.</p>
-                    <p>Continué puliendo el estilo y siempre pensando que si hacía algo más, podría ir aprendiendo en el camino.</p>
-                    <p>Fue así que me incliné en hacer una página interactiva en la cual se viera el trabajo pero además algo que a mí me gusta mucho como lo es Star Wars.</p>
-                    <p>Luego de un arduo trabajo y muchas horas de pulido llegué a esto que es de mi agrado, sabiendo que le falta y siempre se puede mejorar.</p>
+                    <p>El proyecto continua, de a poco se van añadiendo nuevas cosas.</p>
+                    <p>La idea es crear una pequeña comunidad, para alimentar el sitio y que este se haga visible</p>
+                    <p>En el camino se encontraron falta de ganas y poco acompañamiento pero hay que seguirle dando</p>
+                    <p>Seguire con este proyecto, me gusta y siempre sera un lindo lugar en donde añadir nuevos conocimientos.</p>
+                    <p>Gracias por pasarte</p>
+                    <p>!May the force be with you, always!</p>
                 </div>
             </div>
             <div className="star-background"></div>

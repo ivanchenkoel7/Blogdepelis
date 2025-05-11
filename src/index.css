@@ -199,7 +199,7 @@ body{
     font-size: 30px;
     font-weight: bold;
     font-family: Starjout;
-    margin-left: 34%;
+    margin-left: 40%;
     margin-bottom: 0;
 }
 
@@ -1098,6 +1098,14 @@ form__aside-search input::placeholder{
     box-shadow: 0 0 10px #b300ff, 0 0 20px #b300ff, 0 0 30px #b300ff, 0 0 40px #b300ff;
 }
 
+.choosen-border {
+    border: 2px solid #ffffff; 
+}
+
+.choosen-border:hover {
+    box-shadow: 0 0 10px #ffffff, 0 0 20px #ffffff, 0 0 30px #ffffff, 0 0 40px #ffffff;
+}
+
 
 
 .card i {
@@ -1588,6 +1596,10 @@ form__aside-search input::placeholder{
 
 .violeta-text{
     color: #b300ff;
+}
+
+.choosen-text{
+    color: #ffffff;
 }
 
 
